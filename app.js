@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoute = require('./routes/auth');
-const productRoute = require('./routes/product');
+const taskRoute = require('./routes/task');
 dotenv.config();
 
 mongoose.connect(
@@ -22,7 +22,7 @@ mongoose.connect(
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoute);
-app.use('/api/products', productRoute);
+app.use('/api/tasks', taskRoute);
 app.get('/', (req, res) => res.send('Hello World!'));
 
 const port = process.env.PORT;

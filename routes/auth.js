@@ -37,8 +37,11 @@ route.post('/register', async (req, res) => {
     try {
         const newUser = await user.save();
         res.send({
-            'name': newUser.name,
-            'email': newUser.email
+            "status": "success",
+            "data": {
+                "name": newUser.name,
+                "email": newUser.email
+            }
         });
     } catch (error) {
         res.send(error);
@@ -46,7 +49,7 @@ route.post('/register', async (req, res) => {
 });
 
 // Login with email and password
-route.post('/login', async (req, res) => {
+route.post('/signin', async (req, res) => {
     const validation = loginSchema.validate(req.body);
     const err = validation.error;
     if (err) {
