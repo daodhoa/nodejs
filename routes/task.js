@@ -12,7 +12,13 @@ const taskSchema = Joi.object({
 route.get('/', authCheck, async (req, res) => {
     const user_id = req.user._id;
     try {
-        const tasks = await Task.find({ user_id: user_id });
+        const query = {
+            user_id: user_id
+        }
+        if (req.query.status) {
+            query.status = req.query.status
+        }
+        const tasks = await Task.find(query);
         return res.status(200).json(tasks);
     } catch (error) {
         return res.status(400).json(error);

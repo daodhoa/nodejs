@@ -68,7 +68,7 @@ route.post('/signin', async (req, res) => {
         return res.status(401).json({message : 'Wrong password!'})
     }
 
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 * 60});
 
     return res.status(200).json({
         user : {
