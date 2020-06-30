@@ -47,4 +47,18 @@ route.post('/', authCheck, async (req, res) => {
     }
 });
 
+route.delete('/:_id', authCheck, async (req, res) => {
+    const user_id = req.user._id;
+    const task_id = req.params._id;
+    if (!task_id) {
+        return res.status(422).json({'error': 'Please provide task id'});
+    }
+    try {
+        const task = await Task.findOneAndDelete({ _id: task_id, user_id });
+        return res.status(204).json(task);
+    } catch (error) {
+        return res.status(400).json(error);
+    }
+});
+
 module.exports = route;
