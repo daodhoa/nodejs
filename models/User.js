@@ -13,6 +13,14 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    two_fa_type: {
+        type: Number,
+        required: false
+    },
+    auth_secret: {
+        type: String,
+        required: false
     }
 });
 

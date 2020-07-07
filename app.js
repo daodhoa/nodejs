@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoute = require('./routes/auth');
 const taskRoute = require('./routes/task');
+const twoFaRoute = require('./routes/twoFa');
 dotenv.config();
 
 mongoose.connect(
@@ -23,6 +24,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoute);
 app.use('/api/tasks', taskRoute);
+app.use('/api/2fa', twoFaRoute);
 app.get('/', (req, res) => res.send('Hello World!'));
 
 const port = process.env.PORT;
